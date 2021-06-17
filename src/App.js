@@ -1,9 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { generateRandomNumber } from "./numberGenerator";
 import React, { useState } from "react";
+import { getMessage } from "./StatusMessage";
 const num = generateRandomNumber();
-console.log(num);
 
 export function App() {
   const onSubmit = (event) => {
@@ -31,7 +30,7 @@ export function App() {
         <input name="guessNumber" type="number" min="1" max="100" />
         <button>Submit</button>
       </form>
-      <div>{status}</div>
+      <div>{getMessage(status)}</div>
     </div>
   );
 }
