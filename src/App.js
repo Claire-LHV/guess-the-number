@@ -1,5 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { generateRandomNumber } from "./numberGenerator";
+const num = generateRandomNumber();
+console.log(num);
 
 export function App() {
   const onSubmit = (event) => {
