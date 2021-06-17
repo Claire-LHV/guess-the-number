@@ -1,14 +1,28 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { generateRandomNumber } from "./numberGenerator";
+import React, { useState } from "react";
 const num = generateRandomNumber();
 console.log(num);
 
 export function App() {
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.elements.guessNumber.value);
+    const guess = parseInt(event.target.elements.guessNumber.value);
+    if (Math.abs(guess - num) === 0) {
+      setStatus("CORRECT");
+    } else if (Math.abs(guess - num) <= 10) {
+      setStatus("VERY_CLOSE");
+    } else if (Math.abs(guess - num) <= 20) {
+      setStatus("CLOSE");
+    } else if (Math.abs(guess - num) <= 30) {
+      setStatus("GETTING_CLOSE");
+    } else {
+      setStatus("FAR");
+    }
   };
+  const [status, setStatus] = useState("NOT_STARTED");
+
   return (
     <div className="App">
       <h1>Guess the number</h1>
@@ -17,6 +31,7 @@ export function App() {
         <input name="guessNumber" type="number" min="1" max="100" />
         <button>Submit</button>
       </form>
+      <div>{status}</div>
     </div>
   );
 }
